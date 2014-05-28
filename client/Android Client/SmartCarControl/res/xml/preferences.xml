@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >    
+	<EditTextPreference 
+	    android:key="serverIp"
+	    android:title="Server IP" 
+	    android:summary="Vechicle's IP Address" />
+	
+	<EditTextPreference 
+	    android:key="serverPort"
+	    android:title="Server Port" 
+	    android:summary="Vehicles's Port Number"
+	    android:defaultValue="8787" />
+	
+	<CheckBoxPreference 
+	    android:key="automation"
+	    android:title="Automation"
+	    android:summaryOn="Automation is ON"
+	    android:summaryOff="Automation is OFF"
+	    android:defaultValue="false" />
+	
+	<ListPreference 
+	    android:key="automationMode"
+	    android:title="Automation Mode"
+	    android:entries="@array/auto_modes_readable"
+	    android:entryValues="@array/auto_modes"
+	    android:dependency="automation" />
+</PreferenceScreen>

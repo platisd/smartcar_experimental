@@ -1,0 +1,147 @@
+package se.chalmers.balmung.smartcar;
+
+import java.io.File;
+
+import android.media.ThumbnailUtils;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.Toast;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+public class GalleryActivity extends Activity {   
+	String[] photosList;
+	GridView gridView;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.gallery_layout);
+				
+		new Task().execute("");
+		
+//		File file = new File(Environment.getExternalStoragePublicDirectory("DCIM/100MEDIA") + "");
+//		if (file.isDirectory()) {
+//			File[] filesList = file.listFiles();
+//			photosList = new String[filesList.length];
+//			
+//			for (int i = 0; i < filesList.length; i++) {
+//				photosList[i] = filesList[i].getAbsolutePath();
+//			}
+//		}
+//		
+//		gridView = (GridView) findViewById(R.id.gallery);
+//		gridView.setAdapter(new ImageAdapter(this));
+//
+//		gridView.setOnItemClickListener(new OnItemClickListener() {
+//	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//	            Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+//	        }
+//	    });
+		
+//		new Task().execute();
+		
+//		for (int i = 0; i < photosList.length; i++) {
+//			new ImageLoader().execute(i);
+//		}
+		
+
+    }
+	
+	public class ImageAdapter extends BaseAdapter {
+		private Context mContext;
+		private int iterator = 0;
+		
+	    public ImageAdapter(Context c) {
+	        mContext = c;
+	    }
+		
+		@Override
+		public int getCount() {
+			return photosList.length;
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ImageView imageView;
+			
+			if (convertView == null) {
+				imageView = new ImageView(mContext);
+				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//				imageView.setTag(++iterator);
+			} else {
+				imageView = (ImageView) convertView;
+			}
+						
+//			Log.d("smart", "test2");
+//			Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(photosList[position]), 200, 200);
+//			imageView.setImageBitmap(bitmap);
+//			new ImageLoader().execute();
+//			new Task().execute();
+			return imageView;
+		}
+
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();	
+//		gridView.invalidateViews();
+	}
+	
+	protected void onPause() {
+		super.onPause();
+
+	}
+	
+	
+	public class Task extends AsyncTask {
+
+		@Override
+		protected Void doInBackground(Object... params) {
+			Log.d("smart", "works");
+			return null;
+		}
+	}
+	
+	public class ImageLoader extends AsyncTask <Void, Void, Void> {
+		ImageView imageView;
+		Integer position;
+		
+	    @Override
+	    protected Void doInBackground(Void... params) {
+//	    	imageView = (ImageView) params[0];
+//	    	position = (Integer) imageView.getTag();
+	    	Log.d("smart", "test");
+	    	return null;
+//	        return ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(photosList[position]), 200, 200);
+	    }
+	    
+	    protected void onPostExecute(Void result) {
+//	    	if (imageView.getTag() == position) {
+//	    		imageView.setImageBitmap(result);
+//	    	}
+	    }
+	}
+}
